@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Week 6 Map</title>
+	
+	<!-- iphone meta -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	
+	<!-- jquery mobile -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+	<!-- map stuff -->
+	<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX3kXaqyDwwZuLQpUyTVVBo7pc83S9kTY&sensor=true">
+  </script>
+  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript">
+  var mapModule;
+  $("body").ready(function() {
+    mapModule = new MapModule("map_canvas");
+  });
+  </script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="header" data-theme="b">
+  	  <h1>Map</h1>
+  	</div>
+  	
+  	<div data-role="content" style="padding: 0px">	
+  		<div id="map_canvas"></div>
+  	</div>
+  </div>
+</body>
+</html>
