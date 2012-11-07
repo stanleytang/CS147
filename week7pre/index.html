@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Stan's Awesome Audio Recorder</title>
+	<meta name="author" content="Stanley Tang">
+	
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="jRecorder.js"> </script>
+</head>
+<body>
+  <script>
+    $.jRecorder({ 
+   // host: 'http://stanford.edu/~stanleyt/cgi-bin/:8888/git/jRecorder/html/acceptfile.php?filename=hello.wav',
+      callback_started_recording: function() {
+        $('#status').html('Recording is started');
+      },
+      callback_stopped_recording: function() {
+        $('#status').html('Stop request is accepted');
+      },
+      callback_activityLevel: function(level) { 
+        $('#level').html(level);
+        
+        if(level == -1) {
+          $('#levelbar').css("width",  "2px");
+          $('#level').html("0");
+        } else {
+          $('#levelbar').css("width", (level * 2)+ "px");
+        }
+      },
+      callback_activityTime: function(time) { 
+        $('#time').html(time);
+      },
+      callback_finished_sending: function(time) { callback_finished_sending() },
+      swf_path : 'jRecorder.swf',
+    });
+  </script>
+    
+  <div style="background-color: #eeeeee;border:1px solid #cccccc">
+    Time: <span id="time">00:00</span>
+  </div>
+  
+  <div>
+    Level: <span id="level"></span>
+  </div>  
+
+  <div id="levelbase" style="width:200px;height:20px;background-color:#ffff00">
+    <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
+  </div>
+  
+  <div>
+    Status: <span id="status"></status>
+  </div>
+  
+  <input type="button" id="record" value="Record" style="color:red" />  
+  <input type="button" id="stop" value="Stop" />
+  
+  <script type="text/javascript">
+    $('#record').click(function(){
+      $.jRecorder.record(30); //record up to 30 sec and stops automatically
+    });
+    
+    $('#stop').click(function(){
+      $.jRecorder.stop();
+    });
+  </script>
+
+</body>
+</html>
